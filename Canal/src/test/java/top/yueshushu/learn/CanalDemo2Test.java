@@ -36,8 +36,8 @@ public class CanalDemo2Test {
                         "127.0.0.1", 11111
                 ),
                 "example",
-                "root",
-                "Zkong_1234"
+                "canal",
+                "canal"
         );
         canalConnector.connect();
         // 订阅哪个对象

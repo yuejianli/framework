@@ -23,9 +23,9 @@ import java.util.stream.Collectors;
  * @author Yue Jianli
  * @date 2022-04-28
  *
- * -- 使用命令登录：mysql -u root -p
- * -- 创建用户 用户名：canal 密码：Canal@123456
- * create user 'canal'@'%' identified by 'Canal@123456';
+ * -- 使用命令登录：mysql -u canal -p
+ * -- 创建用户 用户名：canal 密码：canal
+ * create user 'canal'@'%' identified by 'canal';
  * -- 授权 *.*表示所有库
  * grant SELECT, REPLICATION SLAVE, REPLICATION CLIENT on *.* to 'canal'@'%' identified by 'Canal@123456';
  *
@@ -45,8 +45,8 @@ public class CanalDemoTest {
                         "127.0.0.1", 11111
                 ),
                 "example",
-                "root",
-                "Zkong_1234"
+                "canal",
+                "canal"
         );
         //2. 进行连接
         canalConnector.connect();
@@ -62,8 +62,8 @@ public class CanalDemoTest {
         CanalConnector canalConnector = CanalConnectors.newSingleConnector(
                 new InetSocketAddress("127.0.0.1", 11111),
                 "example",
-                "root",
-                "Zkong_1234"
+                "canal",
+                "canal"
         );
         // 进行连接
         canalConnector.connect();
@@ -103,8 +103,8 @@ public class CanalDemoTest {
         CanalConnector canalConnector = CanalConnectors.newSingleConnector(
                 new InetSocketAddress("127.0.0.1", 11111),
                 "example",
-                "root",
-                "Zkong_1234"
+                "canal",
+                "canal"
         );
         // 进行连接
         canalConnector.connect();
@@ -154,7 +154,7 @@ public class CanalDemoTest {
         CanalConnector canalConnector = CanalConnectors.newSingleConnector(
                 new InetSocketAddress("127.0.0.1", 11111),
                 "example",
-                "root", "Zkong_1234"
+                "canal", "canal"
         );
         //2. 进行连接
         canalConnector.connect();
@@ -221,7 +221,7 @@ public class CanalDemoTest {
                         "127.0.0.1", 11111
                 ),
                 "example",
-                "root", "Zkong_1234"
+                "canal", "canal"
         );
         canalConnector.connect();
         canalConnector.subscribe("springboot.user");

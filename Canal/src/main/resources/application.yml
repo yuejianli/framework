@@ -29,8 +29,8 @@ canal:
     ip: 127.0.0.1
   port: 11111
   destination: example
-  username: root
-  password: Zkong_1234
+  username: canal
+  password: canal
   schemaName: springboot
   consumer:
     start: true
