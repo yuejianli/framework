@@ -35,28 +35,26 @@ public class ZkLock {
 	 */
 	public ZkLock() {
 		synchronized (ZkLock.class) {
-			synchronized (ZkLock.class) {
-				try {
-					String connnectionString = "127.0.0.1:2181";
-					int sessionTimeOut = 2000;
-					zooKeeper = new ZooKeeper(
-							connnectionString, sessionTimeOut, event -> {
-						if (event.getType() == Watcher.Event.EventType.NodeDeleted && event.getPath().equals(waitNode)) {
-							waitCountDownLatch.countDown();
-						}
+			try {
+				String connnectionString = "127.0.0.1:2181";
+				int sessionTimeOut = 2000;
+				zooKeeper = new ZooKeeper(
+						connnectionString, sessionTimeOut, event -> {
+					if (event.getType() == Watcher.Event.EventType.NodeDeleted && event.getPath().equals(waitNode)) {
+						waitCountDownLatch.countDown();
 					}
-					);
-					Stat stat = zooKeeper.exists("/" + ROOT_NODE, false);
-					if (stat == null) {
-						//没有这个节点，就新创建
-						log.info(">>> 没有节点 /" + ROOT_NODE + ",新创建");
-						zooKeeper.create("/" + ROOT_NODE, "lock".getBytes(), ZooDefs.Ids.OPEN_ACL_UNSAFE,
-								CreateMode.PERSISTENT);
-					}
-					log.info("zookeeper --> {}", zooKeeper);
-				} catch (Exception e) {
-					log.error("异常 ", e);
 				}
+				);
+				Stat stat = zooKeeper.exists("/" + ROOT_NODE, false);
+				if (stat == null) {
+					//没有这个节点，就新创建
+					log.info(">>> 没有节点 /" + ROOT_NODE + ",新创建");
+					zooKeeper.create("/" + ROOT_NODE, "lock".getBytes(), ZooDefs.Ids.OPEN_ACL_UNSAFE,
+							CreateMode.PERSISTENT);
+				}
+				log.info("zookeeper --> {}", zooKeeper);
+			} catch (Exception e) {
+				log.error("异常 ", e);
 			}
 		}
 	}
@@ -134,6 +132,8 @@ public class ZkLock {
 			return;
 		}
 		String currentThreadName = Thread.currentThread().getName();
+		
+		//指定节点版本号，不加也可以，输入-1表示版本号不参与
 		zooKeeper.delete(currentNode, -1);
 		log.info(">>> 线程 {} 释放了锁资源 {}", currentThreadName, currentNode);
 	}
