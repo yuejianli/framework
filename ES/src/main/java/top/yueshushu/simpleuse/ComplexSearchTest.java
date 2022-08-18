@@ -8,9 +8,11 @@ import org.elasticsearch.client.RestClient;
 import org.elasticsearch.client.RestClientBuilder;
 import org.elasticsearch.client.RestHighLevelClient;
 import org.elasticsearch.common.unit.Fuzziness;
-import org.elasticsearch.index.query.*;
+import org.elasticsearch.index.query.BoolQueryBuilder;
+import org.elasticsearch.index.query.FuzzyQueryBuilder;
+import org.elasticsearch.index.query.QueryBuilders;
+import org.elasticsearch.index.query.RangeQueryBuilder;
 import org.elasticsearch.search.SearchHits;
-import org.elasticsearch.search.aggregations.AggregationBuilder;
 import org.elasticsearch.search.aggregations.AggregationBuilders;
 import org.elasticsearch.search.builder.SearchSourceBuilder;
 import org.elasticsearch.search.fetch.subphase.highlight.HighlightBuilder;
@@ -71,9 +73,7 @@ public class ComplexSearchTest {
 		log.info(">>>>最大的匹配分数值:{}", result.getMaxScore());
 		log.info(">>>>查询结果输出开始");
 		Arrays.stream(result.getHits()).forEach(
-				n -> {
-					log.info(">>>获取内容:{}", n.getSourceAsString());
-				}
+				n -> log.info(">>>获取内容:{}", n.getSourceAsString())
 		);
 		log.info(">>>> 查询结果输出结束");
 	}

@@ -3,7 +3,6 @@ package top.yueshushu.simpleuse;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import org.apache.http.HttpHost;
-import org.apache.http.client.methods.HttpPost;
 import org.elasticsearch.action.bulk.BulkRequest;
 import org.elasticsearch.action.bulk.BulkResponse;
 import org.elasticsearch.action.delete.DeleteRequest;
@@ -152,9 +151,7 @@ public class DocumentTest {
 		log.info(">>> 获取响应:{}", bulkResponse);
 		log.info("获取 took 花费时长:{}", bulkResponse.getTook());
 		Arrays.stream(bulkResponse.getItems()).forEach(
-				n -> {
-					log.info(">>>>> {}", n);
-				}
+				n -> log.info(">>>>> {}", n)
 		);
 	}
 	
@@ -174,9 +171,7 @@ public class DocumentTest {
 		
 		//设置信息:
 		Arrays.stream(bulkResponse.getItems()).forEach(
-				n -> {
-					log.info(">>>>> {}", n.getResponse());
-				}
+				n -> log.info(">>>>> {}", n.getResponse())
 		);
 	}
 	

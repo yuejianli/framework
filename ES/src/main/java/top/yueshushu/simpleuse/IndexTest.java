@@ -54,7 +54,7 @@ public class IndexTest {
 	private RestHighLevelClient restHighLevelClient;
 	
 	@Before
-	public void initClient() throws Exception {
+	public void initClient() {
 		restHighLevelClient = new RestHighLevelClient(RestClient.builder(new HttpHost(ES_HOST, ES_PORT, ES_SCHEMA)));
 	}
 	
@@ -78,7 +78,7 @@ public class IndexTest {
 	 */
 	@Test
 	public void showIndexTest() throws Exception {
-		GetIndexRequest getIndexRequest = new GetIndexRequest("user");
+		GetIndexRequest getIndexRequest = new GetIndexRequest("user", "student");
 		// 进行请求
 		GetIndexResponse getIndexResponse = restHighLevelClient.indices().get(getIndexRequest, RequestOptions.DEFAULT);
 		// 获取请求响应
