@@ -1,0 +1,52 @@
+# 自定义用户名和密码
+#spring:
+#  security:
+#    user:
+#      name: root
+#      password: root
+spring:
+  # 配置thymeleaf的相关信息
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://192.168.100.252:3306/security?serverTimezone=GMT%2B8&useUnicode=true&characterEncoding=UTF-8&useSSL=false&allowMultiQueries=true
+    username: root
+    password: Zkong_1234
+    type: com.alibaba.druid.pool.DruidDataSource
+  thymeleaf:
+    # 开启视图解析
+    enabled: true
+    #编码格式
+    encoding: UTF-8
+    #前缀配置
+    prefix: classpath:/static/
+    # 后缀配置
+    suffix: .html
+    #是否使用缓存 开发环境时不设置缓存
+    cache: false
+    # 格式为 HTML 格式
+    mode: HTML5
+    # 配置类型
+    servlet:
+      content-type: text/html
+#  security:
+#    strategy: MODE_INHERITABLETHREADLOCAL
+#整合mybatis时使用的
+mybatis-plus:
+  # 配置 mapper文件的位置
+  mapper-locations: classpath:mybatis/mapper/**/*.xml
+  # 配置日志
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    map-underscore-to-camel-case: true #  配置别名设置
+#  global-config:
+#    db-config:
+#      logic-delete-field: flag   # 逻辑删除的字段
+#      logic-not-delete-value: 1  # 正常状态下，该字段的值
+#      logic-delete-value: 0      # 删除后，该字段的值
+#      table-underline: true # 驼峰方式转换
+#分页插件
+pagehelper:
+  helperDialect: mysql
+  reasonable: true
+  supportMethodsArguments: true
+  params: count=countSql
