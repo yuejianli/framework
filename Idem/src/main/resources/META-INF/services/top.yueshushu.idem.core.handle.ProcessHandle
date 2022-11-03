@@ -1,0 +1,8 @@
+#DefaultHandleChainPolicy handle
+top.yueshushu.idem.core.handle.MethodNameParseProcessHandle
+top.yueshushu.idem.core.handle.MethodParamsParseProcessHandle
+top.yueshushu.idem.core.handle.HttpParamsParseProcessHandle
+top.yueshushu.idem.core.handle.EncodeIdemKeyProcessHandle
+top.yueshushu.idem.core.handle.ObtainIdemLockProcessHandle
+top.yueshushu.idem.core.handle.IdemCacheProcessHandle
+top.yueshushu.idem.core.handle.custom.LogPrintProcessHandle

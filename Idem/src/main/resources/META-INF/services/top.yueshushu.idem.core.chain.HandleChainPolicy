@@ -1,0 +1,3 @@
+#HandleChainPolicy
+top.yueshushu.idem.core.chain.IdemChainPolicy
+top.yueshushu.idem.core.chain.DedupChainPolicy
