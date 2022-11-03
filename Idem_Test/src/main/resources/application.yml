@@ -1,0 +1,11 @@
+server:
+  port: 8082
+idem:
+  enable: true        #整个功能开关
+  isolateGroup: xxx   #自定义隔离组
+  cache:
+    address: redis://127.0.0.1:6379   #redis地址
+    password: zk123   #redis密码
+    connectionPoolSize: 100 #连接池最大值
+    connectionMinimumIdleSize: 50 #连接池最小值
+    database: 2 #redis的index
