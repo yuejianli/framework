@@ -1,0 +1,107 @@
+rabbitmq 有四种路由匹配规则
+fanout:  消息路由到所有绑定的队列,即 当前channel创建的队列里面。 交换器队列绑定时，不需要binding.
+消息发送，也不需要 routingKey
+direct: routingKey 与 binding 进行比较，如果相同，才发送到那个队列里面。
+topic: routingKey 与 binding 进行比较,是模糊匹配， binding/routingKey 单词层次间用 . 标识
+binding绑定关系支持 * 和 # 两种模糊规则。* 代表一层， # 代表0层或者多层。
+还有一种 header, 不常使用。
+
+创建交换器的方法:
+exchangeDeclare exchangeDeclare exchangeDeclare
+exchangeDeclare( String exchange,String type,boolean durable,boolean autoDelete,
+boolean internal, Map<String,Object> arguments)
+-- 方法中各个参数解释
+exchange: 交换器的名字
+type: 交换器的种类，BuiltinExchangeType 封装了四个类型， fanout,direct,topic,header
+durable: 耐磨持久化,也就是当 RabbitMQ 服务应用重启后，该交换器是否还存在.
+autoDelete: 自动删除, 当所有与该交换器绑定的交换器或者队列不存在时，是否自动删除
+internal: true 表示 内置交换器，客户端不能直接发送消息，需要交换器到交换器方式使用
+arguments: key-value 形式的一些交换器特性参数。
+
+有标识  D  A I (D:表示持久化， A 表示自动删除  I 表示内置 )
+删除交换器的方法:
+exchangeDelete  exchangeDelete exchangeDelete
+
+exchangeDelete(String exchange,boolean ifUnused)
+-- 方法中各个参数的解释
+exchange 表示指定 交换器的名称
+ifUnused 为true时表示未使用删除，如果该交换器正在使用，则不能删除，抛出相关的异常 IOException
+为fasle 时，表示必须删除,无论是否正在使用。 默认值为false
+
+
+队列创建
+queueDeclare  queueDeclare  queueDeclare
+queueDeclare(String queue,boolean durable,boolean exclusive,boolean autoDelete,
+Map<String,Object> arguments)
+
+-- 方法中各个参数的解释
+queue 队列的名字
+durable 耐磨持久化，也就是当RabbbitMQ服务重启后该队列是否还存在
+exclusive: 独占，true 表示只能创建队列的连接才能使用这个队列. 注意是连接，如同一个连接创建的信道 是可以使用该队列的。
+autoDelete：自动删除，当所有消费者断开与队列连接后自动删除。 前提是队列创建后有消费者与其连接过。没有连接过的话，会一直存在的。
+arguments:  key-value 形式的一些队列特性参数
+
+E 表示独占标识
+
+队列删除
+queueDelete queueDelete queueDelete
+queueDelete(String queue,boolean ifUnused,boolean ifEmpty)
+-- 方法中各个参数的解释
+queue 队列的名称
+ifUnused true表示队列未使用删除，正在使用则不删除且抛出异常。 false表示必须删除，默认为false
+ifEmpty true表示队列为空时删除，不为空时则不删除且抛出异常，false表示必须删除，默认值为false
+
+交换器之间相互绑定
+
+exchangeBind  exchangeBind  exchangeBind
+exchangeBind(String destination,String source,String routingKey)
+-- 方法中的参数
+destination  为目标交换器，即后面的交换器  A-->B.  所以  B为 destination
+source   为源交换器，即前面的交换器   A--->B  所以  A为  source
+routingKey  为路由key  是交换器与交换器之间的路由 key
+
+队列绑定  即 队列 与交换器进行绑定
+queueBind  queueBind queueBind  queueBind
+
+queueBind(String queue,String exchange,String routingKey)
+
+-- 方法中的参数
+queue  队列的名称
+exchange  交换器的名称
+routingKey  交换器与队列的路由规则
+
+发布消息
+basicPublish  basicPublish basicPublish basicPublish basicPublish  basicPublish
+basicPublish(String exchange,String routingKey,AMQP.BasicProperties props byte[] body)
+-- 方法中的参数
+exchange  交换器的名称
+routingKey  路由键   是发布时的键
+props 消息的一些属性特点
+body  发布的消息内容， 为 字节数组 类型
+
+交换器解绑
+exchangeUnbind  exchangeUnbind  exchangeUnbind exchangeUnbind
+exchangeUnbind(String destination,String source,String routingKey)
+-- 方法中的参数
+destination  为目标交换器，即后面的交换器  A-->B.  所以  B为 destination
+source   为源交换器，即前面的交换器   A--->B  所以  A为  source
+routingKey  为路由key  是交换器与交换器之间的路由 key
+
+队列解绑  即 队列 与交换器进行解除绑定
+queueUnbind  queueUnbind queueUnbind  queueUnbind
+
+queueUnbind(String queue,String exchange,String routingKey)
+
+-- 方法中的参数
+queue  队列的名称
+exchange  交换器的名称
+routingKey  交换器与队列的路由规则
+
+-- 死信转发
+适用场景:
+1.使用 BasicProperties 属性expiration 设置的 TTL 到期自动删除消息
+2.使用 x-max-length 限制消息最大积压数量，且采用默认策略 drop-head 删除的头部消息
+3.消息确认机制中拒绝确认消息，且末将消息放回队列中删除消息。
+
+
+

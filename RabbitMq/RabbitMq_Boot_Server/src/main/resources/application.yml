@@ -1,0 +1,50 @@
+#配置服务器端相应消息
+server:
+  port: 8088
+  servlet:
+    context-path: /Server
+#配置rabbitmq的相关信息
+spring:
+  rabbitmq:
+    host: 127.0.0.1  # 配置主机
+    port: 5672  # 配置端口
+    virtual-host: /eagle2_host   # 配置虚拟主机
+    username: guest   # 配置用户名
+    password: guest  # 配置密码
+    connection-timeout: 15000
+    # 配置回调
+    publisher-confirm-type: correlated
+#配置rabbit 队列，交换器，路由等相关信息
+rabbit:
+  fanout:
+    exchange: fanout_logs
+    queue1: debug_console
+    queue2: debug_file
+    queue3: debug_db
+  direct:
+    exchange: direct_logs
+    queue1: debug_console
+    queue2: debug_file
+    queue3: debug_db
+  topic:
+    exchange: topic_logs
+    queue1: topic_log_console
+    queue2: topic_log_file
+  ttl:
+    x_exchange: x
+    queue_a: QA
+    queue_b: QB
+    queue_c: QC
+    y_dead_exchange: y
+    y_dead_queue_d: QD
+    delayed_exchange: delayed_exchange2
+    delayed_queue: delayed.queue
+    delayed_routing_key: delayed_routing
+  confirm:
+    # 确认
+    exchange: confirm_exchange_1
+    queue: confirm_queue
+    routing-key: key1
+    backup_exchange: backup_exchange
+    backup_queue: backup_queue
+    warn_queue: warn_queue
