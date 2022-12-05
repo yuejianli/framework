@@ -41,8 +41,8 @@ public class MessageProducerTest6 {
             // 设置为1， 保证 一个发布成功之后再发送下一个。 是不公平分发。
             channel.basicQos(1);
 
-            // 全局性配置   4为队列的数量。
-            channel.basicQos(4, 1, true);
+            // 设置为4
+            channel.basicQos(4);
 
 
             // 进行发布消息

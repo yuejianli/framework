@@ -1,8 +1,6 @@
 package com.yjl.amqp.controller;
 
 import com.yjl.amqp.service.SendMessageService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.web.ConditionalOnEnabledResourceChain;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -10,7 +8,7 @@ import javax.annotation.Resource;
 
 /**
  * @ClassName:SendMessageController
- * @Description TODO
+ * @Description 发送消息
  * @Author 岳建立
  * @Date 2020/12/22 14:03
  * @Version 1.0

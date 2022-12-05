@@ -33,10 +33,10 @@ public class ConfirmProduer {
     @Resource
     private MyCallBack myCallBack;
 
-    @PostConstruct
-    public void initCallBack() {
-        // rabbitTemplate.setConfirmCallback(myCallBack);
-    }
+//    @PostConstruct
+//    public void initCallBack() {
+//       rabbitTemplate.setConfirmCallback(myCallBack);
+//    }
 
     @GetMapping("/confirmSendMessage/{message}")
     public String sendMessage(@PathVariable("message") String message) {

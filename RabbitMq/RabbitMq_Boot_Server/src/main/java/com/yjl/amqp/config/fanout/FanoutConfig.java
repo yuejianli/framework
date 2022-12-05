@@ -57,5 +57,4 @@ public class FanoutConfig {
         return BindingBuilder.bind(queue).to(fanoutExchange);
     }
 
-
 }

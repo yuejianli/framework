@@ -27,16 +27,18 @@ public class ConsumerTest53 {
 
             Channel finalChannel = channel;
             DeliverCallback deliverCallback = (consumerTag, message) -> {
-                // 应答时间短
+
+                System.out.println(consumer + "收到消息，还没有确认" + new String(message.getBody()));
+                // 应答时间长
                 try {
-                    TimeUnit.SECONDS.sleep(10);
+                    TimeUnit.SECONDS.sleep(30);
                 } catch (Exception e) {
 
                 }
                 // 消息应答
                 finalChannel.basicAck(message.getEnvelope().getDeliveryTag(), true);
 
-                System.out.println(consumer + ">>> 获取到消息 :" + new String(message.getBody()));
+                System.out.println(consumer + ">>> 确认获取到消息 :" + new String(message.getBody()));
             };
 
             CancelCallback cancelCallback = (consumerTag) -> {
@@ -46,7 +48,7 @@ public class ConsumerTest53 {
                     "YJLC", false, deliverCallback, cancelCallback);
             System.out.println(consumer + ">>> 接收消息成功");
 
-            TimeUnit.SECONDS.sleep(120);
+            System.in.read();
         } catch (Exception e) {
             System.out.println(">>>> 消息出错 " + e.getMessage());
         } finally {

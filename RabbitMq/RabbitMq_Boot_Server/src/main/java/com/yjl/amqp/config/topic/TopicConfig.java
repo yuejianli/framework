@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 
 /**
- * Fanout 形式的 生产
+ * Topic 形式的 生产
  *
  * @author yuejianli
  * @date 2022-11-22

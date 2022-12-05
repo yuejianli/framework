@@ -19,8 +19,8 @@ import java.util.Optional;
  * @author yuejianli
  * @date 2022-11-23
  */
-@RestController
-@Slf4j
+ @RestController
+ @Slf4j
 public class ConfirmProduer2 implements RabbitTemplate.ConfirmCallback, RabbitTemplate.ReturnCallback {
 
     @Value("${rabbit.confirm.exchange}")

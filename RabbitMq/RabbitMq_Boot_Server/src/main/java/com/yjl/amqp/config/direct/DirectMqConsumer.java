@@ -33,7 +33,7 @@ public class DirectMqConsumer {
     })
     public void fanoutQueueConsumerConsole(String message) {
         log.info("控制台打印输出:" + message);
-        receiveMessageService.setMessage("控制台打印输出 direct:" + message);
+        receiveMessageService.handlerMessage("控制台打印输出 direct:" + message);
     }
 
 
@@ -46,7 +46,7 @@ public class DirectMqConsumer {
     })
     public void fanoutQueueConsumerFile(String message) {
         log.info("文件 打印输出:" + message);
-        receiveMessageService.setMessage("文件打印输出 direct:" + message);
+        receiveMessageService.handlerMessage("文件打印输出 direct:" + message);
     }
 
     @RabbitListener(bindings = {
@@ -58,7 +58,7 @@ public class DirectMqConsumer {
     })
     public void fanoutQueueConsumerDb(String message) {
         log.info("Db 打印输出:" + message);
-        receiveMessageService.setMessage("DB 打印输出 direct:" + message);
+        receiveMessageService.handlerMessage("DB 打印输出 direct:" + message);
     }
 
 }

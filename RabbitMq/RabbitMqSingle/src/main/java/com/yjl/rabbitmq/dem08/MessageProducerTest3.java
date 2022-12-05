@@ -60,9 +60,8 @@ public class MessageProducerTest3 {
              * 3. 设置某个队列中消息的过期时间(相当于统一设置队列中所有消息的过期时间)
              *
              */
-            AMQP.BasicProperties basicProperties = null;
             //1. 单消息的过期时间  20s
-            basicProperties = new AMQP.BasicProperties.Builder()
+            AMQP.BasicProperties basicProperties = new AMQP.BasicProperties.Builder()
                     .expiration("20000")
                     .build();
             channel.basicPublish(exchangeName, "", basicProperties, "你好啊".getBytes("UTF-8"));

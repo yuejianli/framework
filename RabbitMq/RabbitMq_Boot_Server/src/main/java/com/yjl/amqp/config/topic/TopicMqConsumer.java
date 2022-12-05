@@ -26,7 +26,7 @@ public class TopicMqConsumer {
     @RabbitListener(queues = {"${rabbit.topic.queue1}"})
     public void fanoutQueueConsumer1An2(String message) {
         log.info("队列 topic:" + message);
-        receiveMessageService.setMessage("console topic:" + message);
+        receiveMessageService.handlerMessage("console topic:" + message);
     }
 
 
@@ -39,6 +39,6 @@ public class TopicMqConsumer {
     })
     public void fanoutQueueConsumerConsole(String message) {
         log.info("file topic:" + message);
-        receiveMessageService.setMessage("file topic:" + message);
+        receiveMessageService.handlerMessage("file topic:" + message);
     }
 }

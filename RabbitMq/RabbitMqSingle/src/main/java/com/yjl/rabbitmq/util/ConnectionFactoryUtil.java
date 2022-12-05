@@ -14,7 +14,7 @@ import lombok.extern.slf4j.Slf4j;
 public class ConnectionFactoryUtil {
 
     public static final String MQTT_HOST = "127.0.0.1";
-    public static final String MQTT_VIRTUAL_HOST = "/eagle2_host";
+    public static final String MQTT_VIRTUAL_HOST = "yjl";
     public static final int MQTT_PORT = 5672;
     public static final String MQTT_USERNAME = "guest";
     public static final String MQTT_PASSWORD = "guest";

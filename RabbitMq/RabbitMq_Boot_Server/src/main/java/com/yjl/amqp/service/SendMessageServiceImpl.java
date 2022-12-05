@@ -1,14 +1,10 @@
 package com.yjl.amqp.service;
 
-import org.springframework.amqp.core.AmqpTemplate;
-import org.springframework.amqp.core.Queue;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.autoconfigure.web.ConditionalOnEnabledResourceChain;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 

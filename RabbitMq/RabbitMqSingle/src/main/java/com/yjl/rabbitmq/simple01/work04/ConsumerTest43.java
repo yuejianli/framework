@@ -40,7 +40,7 @@ public class ConsumerTest43 {
                     "YJLB", true, deliverCallback, cancelCallback);
             System.out.println(consumer + ">>> 接收消息成功");
 
-            TimeUnit.SECONDS.sleep(20);
+            System.in.read();
         } catch (Exception e) {
             System.out.println(">>>> 消息出错 " + e.getMessage());
         } finally {

@@ -137,6 +137,4 @@ public class TtlConfig {
                                    @Qualifier("direct_exchange") DirectExchange directExchange) {
         return BindingBuilder.bind(queue).to(directExchange).with("XC");
     }
-
-
 }

@@ -11,9 +11,6 @@ import com.yjl.rabbitmq.util.ConnectionFactoryUtil;
  * @Version 1.0
  **/
 public class MessageConsumer {
-
-    private static String exchangeName = "amqp_exchange";
-
     public static void main(String[] args) throws Exception {
         //3. 创建连接
         Connection connection = ConnectionFactoryUtil.createConnection();

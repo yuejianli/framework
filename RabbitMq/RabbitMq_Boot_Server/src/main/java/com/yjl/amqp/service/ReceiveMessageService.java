@@ -1,16 +1,13 @@
 package com.yjl.amqp.service;
 
 /**
- * @ClassName:ReceiveMessageService
- * @Description TODO
- * @Author 岳建立
- * @Date 2020/12/23 9:28
- * @Version 1.0
- **/
+ * TODO 用途描述
+ *
+ * @author Yue Jianli
+ * @date 2022-12-01
+ */
+
 public interface ReceiveMessageService {
 
-    String getQueueMessage();
-
-    void setMessage(String message);
-
+    void handlerMessage(String message);
 }

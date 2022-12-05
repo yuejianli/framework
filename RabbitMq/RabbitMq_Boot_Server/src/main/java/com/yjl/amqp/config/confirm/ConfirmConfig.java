@@ -41,7 +41,6 @@ public class ConfirmConfig {
 //        return new DirectExchange(exchange);
 //    }
 
-
     @Bean(value = "confirm_direct_exchange")
     DirectExchange confirmDirectExchange() {
         ExchangeBuilder exchangeBuilder = ExchangeBuilder.directExchange(exchange)

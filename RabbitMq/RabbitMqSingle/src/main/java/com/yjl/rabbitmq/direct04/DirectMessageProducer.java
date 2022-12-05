@@ -36,52 +36,53 @@ public class DirectMessageProducer {
                 true, false, null);
 
         // 定义一个路由 routingKey 和 信息 的map, 由 map 进行处理。
-//
-//        Map<String,String> messageMap = new HashMap<>();
-//
-//        messageMap.put("debug","一个 debug 消息 1");
-//        messageMap.put("debug","一个 debug 消息 2");
-//
-//        messageMap.put("info","一个 info 消息 1");
-//        messageMap.put("info","一个 info 消息 2");
-//        messageMap.put("info","一个 info 消息3 ");
-//
-//        messageMap.put("warn","一个 warn 消息 1");
-//        messageMap.put("warn","一个 warn 消息 2");
-//        messageMap.put("warn","一个 warn 消息 3");
-//
-//        messageMap.put("error","一个 error 消息 1");
-//        messageMap.put("error","一个 error 消息 2");
-//        messageMap.put("error","一个 error 消息 3");
-//        messageMap.put("error","一个 error 消息 4");
-//
-//        messageMap.forEach((routingKey,message)->{
-//            try {
-//                channel.basicPublish(EXCHANGE_NAME,routingKey,
-//                        null,message.getBytes("UTF-8"));
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//            }
-//        });
-//
-//        //输入流等待
-//        System.in.read();
-//
-//        channel.close();
-//        connection.close();
 
+        Map<String, String> messageMap = new HashMap<>();
 
-        Scanner scanner = new Scanner(System.in);
-        while (scanner.hasNextLine()) {
-            // routingKey 为 空
-            String inputMessage = scanner.nextLine();
+        messageMap.put("debug", "一个 debug 消息 1");
+        messageMap.put("debug", "一个 debug 消息 2");
 
-            String[] splitMessage = inputMessage.split("\\ ");
+        messageMap.put("info", "一个 info 消息 1");
+        messageMap.put("info", "一个 info 消息 2");
+        messageMap.put("info", "一个 info 消息3 ");
 
-            channel.basicPublish(EXCHANGE_NAME, splitMessage[0],
-                    null, splitMessage[1].getBytes("UTF-8"));
-        }
+        messageMap.put("warn", "一个 warn 消息 1");
+        messageMap.put("warn", "一个 warn 消息 2");
+        messageMap.put("warn", "一个 warn 消息 3");
+
+        messageMap.put("error", "一个 error 消息 1");
+        messageMap.put("error", "一个 error 消息 2");
+        messageMap.put("error", "一个 error 消息 3");
+        messageMap.put("error", "一个 error 消息 4");
+
+        messageMap.forEach((routingKey, message) -> {
+            try {
+                channel.basicPublish(EXCHANGE_NAME, routingKey,
+                        null, message.getBytes("UTF-8"));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+
+        //输入流等待
+        System.in.read();
+
         channel.close();
         connection.close();
+
+
+//        Scanner scanner = new Scanner(System.in);
+//          // 传入的格式为  debug 一个 debug 消息 1
+//        while (scanner.hasNextLine()) {
+//            // routingKey 为 空
+//            String inputMessage = scanner.nextLine();
+//
+//            String[] splitMessage = inputMessage.split("\\ ");
+//
+//            channel.basicPublish(EXCHANGE_NAME, splitMessage[0],
+//                    null, splitMessage[1].getBytes("UTF-8"));
+//        }
+//        channel.close();
+//        connection.close();
     }
 }

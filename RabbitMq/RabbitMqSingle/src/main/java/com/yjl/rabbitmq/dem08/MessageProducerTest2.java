@@ -28,7 +28,8 @@ public class MessageProducerTest2 {
 
             String queueName = "queue2";
 
-            channel.queueDeclare(queueName, true, false, false, null);
+            boolean durable = true;
+            channel.queueDeclare(queueName, durable, false, false, null);
             // 将交换机与 队列进行绑定
             channel.queueBind(queueName, exchangeName, "queue2_RabbitMq-2");
 

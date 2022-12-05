@@ -8,7 +8,7 @@ spring:
   rabbitmq:
     host: 127.0.0.1  # 配置主机
     port: 5672  # 配置端口
-    virtual-host: /eagle2_host   # 配置虚拟主机
+    virtual-host: yjl   # 配置虚拟主机
     username: guest   # 配置用户名
     password: guest  # 配置密码
     connection-timeout: 15000

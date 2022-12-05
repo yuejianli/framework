@@ -27,9 +27,10 @@ public class FanoutMqConsumer {
     @RabbitListener(queues = {"${rabbit.fanout.queue1}", "${rabbit.fanout.queue2}"})
     public void fanoutQueueConsumer1An2(String message) {
         log.info("队列 fanout:" + message);
-        receiveMessageService.setMessage("第一个消费者和第二个消费者获取消息 fanout:" + message);
+        receiveMessageService.handlerMessage("第一个消费者和第二个消费者获取消息 fanout:" + message);
     }
 
+    // 也可以通过 RabbitListener 进行配置
     @RabbitListener(bindings = {
             @QueueBinding(
                     value = @Queue("${rabbit.fanout.queue3}"),
@@ -39,8 +40,6 @@ public class FanoutMqConsumer {
     })
     public void fanoutQueueConsumer3(String message) {
         log.info("第三个消费者获取消息 fanout:" + message);
-        receiveMessageService.setMessage("第三个消费者获取消息 fanout:" + message);
+        receiveMessageService.handlerMessage("第三个消费者获取消息 fanout:" + message);
     }
-
-
 }

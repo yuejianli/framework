@@ -23,7 +23,7 @@ public class MessageProducerTest1 {
         //设置主机
         connectionFactory.setHost("127.0.0.1");
         //设置虚拟主机
-        connectionFactory.setVirtualHost("/eagle2_host");
+        connectionFactory.setVirtualHost("yjl");
         //设置端口
         connectionFactory.setPort(5672);
         //设置用户名
